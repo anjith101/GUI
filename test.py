@@ -12,12 +12,16 @@ Builder.load_file("main.kv")
 class StarterMenu(Screen):
     pass
 
+class MainMenu(Screen):
+	pass
+
 class MycartMenu(Screen):
     pass
 
 sm = ScreenManager()
 sm.add_widget(StarterMenu(name='starter'))
 sm.add_widget(MycartMenu(name='mycart'))
+sm.add_widget(MainMenu(name='mainmenu'))
 
 # Create the screen manager
 
