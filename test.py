@@ -1,4 +1,10 @@
 from kivy.app import App
+from kivy.uix.widget import Widget
+from kivy.properties import ObjectProperty
+from kivy.uix.label import Label
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.gridlayout import GridLayout 
+from kivy.uix.popup import Popup 
 from kivy.lang import Builder
 from kivy.uix.image import Image
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
@@ -9,6 +15,9 @@ from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 Builder.load_file("main.kv")
 
 # Declare both screens
+class  MyPopup(Popup):
+	pass
+	
 class StarterMenu(Screen):
     pass
 
