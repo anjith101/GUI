@@ -25,7 +25,7 @@ def message(client, feed_id, payload):
     print('Feed {0} received new order: {1}'.format(feed_id, payload))
 
     B = ('{1}'.format(feed_id, payload))
-    print B
+    print (B)
 
 client = MQTTClient(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
 client.on_connect    = connected

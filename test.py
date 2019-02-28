@@ -11,6 +11,15 @@ from kivy.base  import  runTouchApp
 from kivy.garden.knob import  Knob
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 
+# Import Adafruit IO REST client.
+from Adafruit_IO import Client, Feed
+
+ADAFRUIT_IO_KEY = '9de3934474334c6a895bd9ce1994148c'
+ADAFRUIT_IO_USERNAME = 'anjith101'
+
+aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
+response = aio.feeds('menu')
+
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
@@ -21,8 +30,13 @@ class  MyPopup(Popup):
 	pass
 
 class StarterMenu(Screen):
-    pass
 
+	#def __init__(self, **kwargs):
+    #super(Launch, self).__init__(**kwargs)
+
+    def callback(instance):
+    	aio.send_data('menu', "Kabab")
+    	print("sent")
 class MainMenu(Screen):
 	pass
 
