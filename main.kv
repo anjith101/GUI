@@ -1,28 +1,63 @@
 #:import Factory kivy.factory.Factory
+<FoodButton@Button>:
+    size_hint: 0.2,0.2
+    font_size: 10
+    text_size: self.size     
+    halign: 'center'
+    valign: 'bottom'
+    color: 0, 0, 0, 1
+    bold: True
+    italic: True
+    background_down: ''
+    on_release: Factory.MyPopup().open()
+
 <MyPopup@Popup>:
     auto_dismiss: False
-    size_hint: 0.3,0.3
+    size_hint: 0.5,0.5
+    title: 'QUANTITY'
     
-    GridLayout:  
-        size_hint: 1,0.6
-        pos_hint: {"right":1, "top":0.6}
+    FloatLayout:  
+        size_hint: 1,1
+        pos_hint: {"right":1, "top":1}
         rows: 1
-        cols: 2
+        cols: 1
         padding: 10
         spacing: 10
-        Button:
-            size_hint: 0.2,0.1
-            pos_hint: {"right":0.3, "top":0.2}
-            background_normal: 'minus.png'
-            background_down: 'minus.png'
-            
+
+        Knob:
+            size_hint: 0.5,0.8
+            pos_hint: {"right":0.5, "top":0.9}
+            min: 0
+            max: 15
+            step: 10
+            value: 0  # Default position of knob.
+            knobimg_source: "knob.png"  # Knob texture
+            show_label: True  # Show central label
+            show_marker: True  # Show surrounding marker
+            marker_img: "bline.png" # Marker texture image
+            knob_size: 0.9  # Scales knob size to leave space for marker
+            markeroff_color: 0, 0, 0, 0
+            Label:
+                text: "{}".format(int(self.parent.value))
+                center: self.parent.center
+                font_size: 40
+                bold: True
+                italic: True
+                color: 1, 1, 0, 1
 
         Button:
-            size_hint: 0.2,0.1
-            pos_hint: {"right":0.8, "top":0.2}
-            background_normal: 'plus.png'
-            background_down: 'plus.png'
-       
+            size_hint: 0.4,0.7
+            pos_hint: {"right":1, "top":0.85}
+            font_size: 30
+            text: 'ORDER'
+            bold: True
+            italic: True
+            background_normal: 'pb.png'
+            background_down: 'pb.png'
+            color: 0, 1, 1, 1
+            
+            on_press:
+                on_release: root.dismiss()
 <StarterMenu>:
     canvas:
         Rectangle:
@@ -30,6 +65,15 @@
             pos: self.pos
             size: self.size
     FloatLayout:
+        Label:
+            size_hint: 0.3,0.1
+            pos_hint:{"right":0.65, "top":1}
+            text: 'STARTERS'
+            bold: True
+            italic: True
+            color: 0, 0, 0, 1
+            font_size: 30
+
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":1, "top":1}
@@ -43,7 +87,7 @@
             
             on_press:
                 root.manager.transition.direction = 'left'
-                root.manager.current = 'mainmenu'
+                root.manager.current = 'main'
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":0.3, "top":1}
@@ -57,157 +101,89 @@
             
             on_press:
                 root.manager.transition.direction = 'right'
-                root.manager.current = 'mycart'
-
-        Button:
-            size_hint: 1,0.1
-            pos_hint: {"right":1, "top":0.1}
-            font_size: 15
-            text: 'ORDER'
-            bold: True
-            italic: True
-            color: 0, 1, 0, 1
-            background_normal: 'button1.png'
-            background_down: 'button1.png'
+                root.manager.current = 'desert'
 
     GridLayout:  
         size_hint: 1,0.6
         pos_hint: {"right":1, "top":0.8}
         rows: 3
         cols: 4
-        Button:
-            size_hint: 0.2,0.2
-            font_size: 15
-            text: 'VEG STICKS'
-            bold: True
-            italic: True
-            outline_width: 1
-            outline_color: 1,0,0
-            background_normal: './starters/vegsticks.png'
-            background_down: ''
-            on_release: Factory.MyPopup().open()
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
+        padding: 10
+        spacing: 10
+        FoodButton:
+
+            text: 'KABAB'
+            background_normal: './starters/kabab.png'
+
+        FoodButton:
             
-            font_size: 15
             text: 'FRENCH FRIES'
-            bold: True
-            italic: True
             background_normal: './starters/frnchfry.png'
-            background_down: ''
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
             
-            font_size: 15
+        FoodButton:
+        
             text: 'SAMOSA'
-            bold: True
-            italic: True
             background_normal: './starters/samosa.png'
-            background_down: ''
-            color: 1, 1, 0, 1
-
-        Button:
-            size_hint: 0.2,0.2
             
-            font_size: 15
+        FoodButton:
+            
             text: 'CHICKEN WINGS'
-            bold: True
-            italic: True
             background_normal: './starters/chickenwings.png'
-            background_down: ''
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
+
+        FoodButton:
             
-            font_size: 15
-            text: 'FRENCH FRIES'
-            bold: True
-            italic: True
+            text: 'GARLIC BREAD'
             background_normal: './starters/garlicbread.png'
-            background_down: ''
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
+
+        FoodButton:
             
-            font_size: 15
-            text: 'SAMOSA'
-            bold: True
-            italic: True
+            text: 'MOZARALLA STICKS'
             background_normal: './starters/mozaralla.png'
-            background_down: ''
-            color: 1, 1, 0, 1
 
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'VEG STICKS'
-            bold: True
-            italic: True
+        FoodButton:
+            text: 'PANI PURI'
             background_normal: './starters/panipuri.png'
-            background_down: ''
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'FRENCH FRIES'
-            bold: True
-            italic: True
-            background_normal: './starters/masala.png'
-            background_down: ''
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'SAMOSA'
-            bold: True
-            italic: True
-            background_normal: './starters/springroll.png'
-            background_down: ''
-            color: 1, 1, 0, 1
 
-        Button:
-            size_hint: 0.2,0.2
+        FoodButton:
+        
+            text: 'MASALA CHAT'
+            background_normal: './starters/masala.png'
             
-            font_size: 15
-            text: 'VEG STICKS'
-            bold: True
-            italic: True
+        FoodButton:
+            
+            text: 'SPRING ROLL'
+            background_normal: './starters/springroll.png'
+
+        FoodButton:
+           
+            text: 'HOT & SOUR SOUP'
             background_normal: './starters/hot.png'
-            background_down: ''
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
             
-            font_size: 15
-            text: 'FRENCH FRIES'
-            bold: True
-            italic: True
+        FoodButton:
+            
+            text: 'SWEET CORN SOUP'
             background_normal: './starters/sweetcorn.png'
-            background_down: ''
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
             
-            font_size: 15
-            text: 'SAMOSA'
-            bold: True
-            italic: True
+        FoodButton:
+        
+            text: 'TOMATTO SOUP'
             background_normal: './starters/tomatto.png'
-            background_down: ''
-            color: 1, 1, 0, 1
         
 <MainMenu>:
     canvas:
         Rectangle:
-            source: 'image.jpg'
+            source: 'images.jpeg'
             pos: self.pos
             size: self.size
     FloatLayout:
+        Label:
+            size_hint: 0.3,0.1
+            pos_hint:{"right":0.65, "top":1}
+            text: 'MAIN COURSE'
+            bold: True
+            italic: True
+            color: 0, 0, 0, 1
+            font_size: 30
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":1, "top":1}
@@ -221,7 +197,7 @@
             
             on_press:
                 root.manager.transition.direction = 'left'
-                root.manager.current = 'mycart'
+                root.manager.current = 'drinks'
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":0.3, "top":1}
@@ -237,153 +213,285 @@
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'starter'
 
-        Button:
-            size_hint: 1,0.1
-            pos_hint: {"right":1, "top":0.1}
-            font_size: 15
-            text: 'ORDER'
+    GridLayout:  
+        size_hint: 1,0.6
+        pos_hint: {"right":1, "top":0.8}
+        rows: 3
+        cols: 4
+        padding: 10
+        spacing: 10
+        FoodButton:
+
+            text: 'BBQ RIBS'
+            background_normal: './main_cource/bbqribs.png'
+
+        FoodButton:
+            
+            text: 'SPAGGATTI'
+            background_normal: './main_cource/spagatti.png'
+        FoodButton:
+        
+            text: 'SEARD SCALLOP'
+            background_normal: './main_cource/seardscallop.png'
+        FoodButton:
+            
+            text: 'SEAFOOD PALTTER'
+            background_normal: './main_cource/seafood.png'
+
+        FoodButton:
+            
+            text: 'PIZZA'
+            background_normal: './main_cource/piza.png'
+        FoodButton:
+            
+            text: 'PENNE PASTHA'
+            background_normal: './main_cource/penne.png'
+
+        FoodButton:
+            text: 'LOBSTER'
+            background_normal: './main_cource/lobster.png'
+
+        FoodButton:
+        
+            text: 'LASAGNA'
+            background_normal: './main_cource/lasagna.png'
+            
+        FoodButton:
+            
+            text: 'BURGER'
+            background_normal: './main_cource/burger.png'
+
+        FoodButton:
+           
+            text: 'BURRITO'
+            background_normal: './main_cource/burrito.png'
+            
+        FoodButton:
+            
+            text: 'NORTH INDIAN THALI'
+            background_normal: './main_cource/nonthali.png'
+            
+        FoodButton:
+        
+            text: 'BIRIYANI'
+            background_normal: './main_cource/biriyani.png'
+
+<DrinksMenu>:
+    canvas:
+        Rectangle:
+            source: 'images.jpeg'
+            pos: self.pos
+            size: self.size
+    FloatLayout:
+        Label:
+            size_hint: 0.3,0.1
+            pos_hint:{"right":0.65, "top":1}
+            text: 'DESERTS'
             bold: True
             italic: True
-            color: 0, 1, 0, 1
-            background_normal: 'button1.png'
-            background_down: 'button1.png'
+            color: 0, 0, 0, 1
+            font_size: 30
+        Button:
+            size_hint: 0.3,0.1
+            pos_hint: {"right":1, "top":1}
+            font_size: 15
+            text: 'NEXT'
+            bold: True
+            italic: True
+            background_normal: 'button.png'
+            background_down: 'button.png'
+            color: 1, 1, 0, 1
+            
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'desert'
+        Button:
+            size_hint: 0.3,0.1
+            pos_hint: {"right":0.3, "top":1}
+            font_size: 15
+            text: 'PREVIOUS'
+            bold: True
+            italic: True
+            background_normal: 'button.png'
+            background_down: 'button.png'
+            color: 1, 1, 0, 1
+            
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'main'
 
     GridLayout:  
         size_hint: 1,0.6
         pos_hint: {"right":1, "top":0.8}
         rows: 3
         cols: 4
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'VEG STICKS'
-            bold: True
-            italic: True
-            outline_width: 1
-            outline_color: 1,0,0
-            background_normal: 'vegsticks.png'
-            background_down: 'vegsticks.png'
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'FRENCH FRIES'
-            bold: True
-            italic: True
-            background_normal: 'frnchfry.png'
-            background_down: 'frnchfry.png'
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'SAMOSA'
-            bold: True
-            italic: True
-            background_normal: 'samosa.png'
-            background_down: 'samosa.png'
-            color: 1, 1, 0, 1
+        padding: 10
+        spacing: 10
+        FoodButton:
 
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'VEG STICKS'
-            bold: True
-            italic: True
-            background_normal: 'vegsticks.png'
-            background_down: 'vegsticks.png'
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'FRENCH FRIES'
-            bold: True
-            italic: True
-            background_normal: 'frnchfry.png'
-            background_down: 'frnchfry.png'
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'SAMOSA'
-            bold: True
-            italic: True
-            background_normal: 'samosa.png'
-            background_down: 'samosa.png'
-            color: 1, 1, 0, 1
+            text: 'FRUITE TART'
+            background_normal: './deserts/Fruittart.png'
 
-        Button:
-            size_hint: 0.2,0.2
+        FoodButton:
             
-            font_size: 15
-            text: 'VEG STICKS'
-            bold: True
-            italic: True
-            background_normal: 'vegsticks.png'
-            background_down: 'vegsticks.png'
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
+            text: 'CHOKO WALLNUT BROWNIE'
+            background_normal: './deserts/chokwallbrow.png'
             
-            font_size: 15
-            text: 'FRENCH FRIES'
-            bold: True
-            italic: True
-            background_normal: 'frnchfry.png'
-            background_down: 'frnchfry.png'
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'SAMOSA'
-            bold: True
-            italic: True
-            background_normal: 'samosa.png'
-            background_down: 'samosa.png'
-            color: 1, 1, 0, 1
-
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'VEG STICKS'
-            bold: True
-            italic: True
-            background_normal: 'vegsticks.png'
-            background_down: 'vegsticks.png'
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'FRENCH FRIES'
-            bold: True
-            italic: True
-            background_normal: 'frnchfry.png'
-            background_down: 'frnchfry.png'
-            color: 1, 1, 0, 1
-        Button:
-            size_hint: 0.2,0.2
-            
-            font_size: 15
-            text: 'SAMOSA'
-            bold: True
-            italic: True
-            background_normal: 'samosa.png'
-            background_down: 'samosa.png'
-            color: 1, 1, 0, 1
+        FoodButton:
         
+            text: 'TIRAMISU'
+            background_normal: './deserts/tiramisu.png'
+            
+        FoodButton:
+            
+            text: 'STRAWBERRY CAKE'
+            background_normal: './deserts/strawberry.png'
+        FoodButton:
+            
+            text: 'ORANGE CHEES CAKE'
+            background_normal: './deserts/orange cheese.png'
 
-<MycartMenu>:
-    BoxLayout:
+        FoodButton:
+            
+            text: 'CHOKO LAIR CAKE'
+            background_normal: './deserts/chocklair.png'
+
+        FoodButton:
+            text: 'GULAB JAMUN'
+            background_normal: './deserts/gulab.png'
+
+        FoodButton:
+        
+            text: 'JALEBI'
+            background_normal: './deserts/jalebi.png'
+            
+        FoodButton:
+            
+            text: 'LADDO'
+            background_normal: './deserts/laddo.png'
+
+        FoodButton:
+           
+            text: 'STRAWBERRY ICECREAM'
+            background_normal: './deserts/strawberryice.png'
+            
+        FoodButton:
+            
+            text: 'CARRMEL SWERL ICECREAM'
+            background_normal: './deserts/carrmelswerl.png'
+            
+        FoodButton:
+        
+            text: 'BANANNA SPLIT'
+            background_normal: './deserts/bananasplit.png'
+
+<DesertMenu>:
+    canvas:
+        Rectangle:
+            source: 'images.jpeg'
+            pos: self.pos
+            size: self.size
+    FloatLayout:
+        Label:
+            size_hint: 0.3,0.1
+            pos_hint:{"right":0.65, "top":1}
+            text: 'DRINKS'
+            bold: True
+            italic: True
+            color: 0, 0, 0, 1
+            font_size: 30
         Button:
-            text: 'My settings button'
+            size_hint: 0.3,0.1
+            pos_hint: {"right":1, "top":1}
+            font_size: 15
+            text: 'NEXT'
+            bold: True
+            italic: True
+            background_normal: 'button.png'
+            background_down: 'button.png'
+            color: 1, 1, 0, 1
+            
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'starter'
         Button:
-            text: 'Back to starter'
-            on_press: root.manager.current = 'starter'
+            size_hint: 0.3,0.1
+            pos_hint: {"right":0.3, "top":1}
+            font_size: 15
+            text: 'PREVIOUS'
+            bold: True
+            italic: True
+            background_normal: 'button.png'
+            background_down: 'button.png'
+            color: 1, 1, 0, 1
+            
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'drinks'
+
+    GridLayout:  
+        size_hint: 1,0.6
+        pos_hint: {"right":1, "top":0.8}
+        rows: 3
+        cols: 4
+        padding: 10
+        spacing: 10
+        FoodButton:
+
+            text: 'BUTTER SCOTCH SHAKE'
+            background_normal: './drinks/butter.png'
+
+        FoodButton:
+            
+            text: 'VANILA SHAKE'
+            background_normal: './drinks/vanilla.png'
+            
+        FoodButton:
+        
+            text: 'STRAWBERRY SHAKE'
+            background_normal: './drinks/strawaberry.png'
+            
+        FoodButton:
+            
+            text: 'COFFEE SHAKE'
+            background_normal: './drinks/coffie.png'
+
+        FoodButton:
+            
+            text: 'CAPPUCCINO'
+            background_normal: './drinks/Cappuccino.png'
+
+        FoodButton:
+            
+            text: 'COFFEE'
+            background_normal: './drinks/coffee.png'
+
+        FoodButton:
+
+            text: 'TEA'
+            background_normal: './drinks/tea.png'
+
+        FoodButton:
+        
+            text: 'COLA'
+            background_normal: './drinks/cola.png'
+            
+        FoodButton:
+            
+            text: 'SPRITE'
+            background_normal: './drinks/sprite.png'
+
+        FoodButton:
+           
+            text: 'PINAPPLAE MOKTALE'
+            background_normal: './drinks/pineappele.png'
+            
+        FoodButton:
+            
+            text: 'ORANGE MOKTALE'
+            background_normal: './drinks/orangecennemo.png'
+            
+        FoodButton:
+        
+            text: 'APPLE MOKTALE'
+            background_normal: './drinks/applemok.png'
