@@ -29,8 +29,8 @@
             background_color: 1,0,1,1
 
         Knob:
-            size_hint: 0.5,0.8
-            pos_hint: {"right":0.5, "top":0.9}
+            size_hint: 0.5,0.5
+            pos_hint: {"right":0.5, "top":0.6}
             min: 0
             max: 15
             step: 10
@@ -44,15 +44,15 @@
             Label:
                 text: "{}".format(int(self.parent.value))
                 center: self.parent.center
-                font_size: 40
+                font_size: 20
                 bold: True
                 italic: True
                 color: 1, 1, 0, 1
 
         Button:
-            size_hint: 0.4,0.7
-            pos_hint: {"right":1, "top":0.85}
-            font_size: 30
+            size_hint: 0.5,0.5
+            pos_hint: {"right":1, "top":0.6}
+            font_size: 15
             text: 'ORDER'
             bold: True
             italic: True
