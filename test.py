@@ -10,7 +10,9 @@ from kivy.uix.image import Image
 from kivy.base  import  runTouchApp
 from kivy.garden.knob import  Knob
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
-
+from kivy.config import Config
+Config.set('graphics', 'width', '400')
+Config.set('graphics', 'height', '500')
 # Import Adafruit IO REST client.
 from Adafruit_IO import Client, Feed
 
