@@ -5,7 +5,9 @@ from kivy.uix.label import Label
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout 
 from kivy.uix.popup import Popup 
+from kivy.core.window import Window
 from kivy.lang import Builder
+from kivy.config import Config
 from kivy.uix.image import Image
 from kivy.base  import  runTouchApp
 from kivy.garden.knob import  Knob
@@ -60,5 +62,5 @@ class TestApp(App):
     def build(self):
         return sm
 if __name__ =="__main__":
-
+    Window.fullscreen = 'auto'
     TestApp().run()
