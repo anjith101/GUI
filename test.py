@@ -11,6 +11,7 @@ from kivy.base  import  runTouchApp
 from kivy.garden.knob import  Knob
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.config import Config
+from kivy.properties import StringProperty
 Config.set('graphics', 'width', '400')
 Config.set('graphics', 'height', '500')
 # Import Adafruit IO REST client.
@@ -28,8 +29,6 @@ response = aio.feeds('menu')
 Builder.load_file("main.kv")
 
 # Declare both screens
-class  MyPopup(Popup):
-	pass
 
 class StarterMenu(Screen):
 
