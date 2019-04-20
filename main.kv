@@ -9,13 +9,19 @@
     bold: True
     italic: True
     background_down: ''
-    on_release: Factory.MyPopup().open()
+    on_press:
+        app.call(self)
+    on_release:
+        Factory.MyPopup().open()
 
-<MyPopup@Popup>:
+<MyPopup>:
+
     auto_dismiss: False
-    size_hint: 0.5,0.5
+    size_hint: 0.5,0.6
     title: 'QUANTITY'
-    
+    background: 'black.jpg'
+    separator_color: 0.4, 0.4, 0.4, 1
+    title_align: 'center'
     FloatLayout:  
         size_hint: 1,1
         pos_hint: {"right":1, "top":1}
@@ -25,13 +31,20 @@
         spacing: 10
 
         Label:
-            text: str(label)
+            id:"l1"
+            text: root.dish
             background_color: 1,0,1,1
             pos_hint: {"right":1, "top":1}
+            size_hint: 1,0.1
+            font_size: 30
+            italic: True
+            color: 1, 1, 1, 1
+
 
         Knob:
-            size_hint: 0.5,0.85
-            pos_hint: {"right":0.5, "top":0.95}
+            id:'ID1'
+            size_hint: 0.4,0.65
+            pos_hint: {"right":0.4, "top":0.85}
             min: 0
             max: 15
             step: 10
@@ -43,17 +56,19 @@
             knob_size: 0.9  # Scales knob size to leave space for marker
             markeroff_color: 0, 0, 0, 0
             Label:
+                
                 text: "{}".format(int(self.parent.value))
                 center: self.parent.center
-                font_size: 20
+                font_size: 40
                 bold: True
                 italic: True
-                color: 1, 1, 0, 1
+                color: 0, 1, .5, 1
 
         Button:
-            size_hint: 0.5,0.85
-            pos_hint: {"right":1, "top":0.95}
-            font_size: 15
+            id:'lb1'
+            size_hint: 0.4,0.3
+            pos_hint: {"right":1, "top":0.9}
+            font_size: 20
             text: 'ORDER'
             bold: True
             italic: True
@@ -62,6 +77,22 @@
             color: 0, 1, 1, 1
             
             on_press:
+                app.callback(self)
+            on_release:
+                root.dismiss()
+
+        Button:
+            size_hint: 0.4,0.3
+            pos_hint: {"right":1, "top":0.4}
+            font_size: 20
+            text: 'CANCEL'
+            bold: True
+            italic: True
+            background_normal: 'pb.png'
+            background_down: 'pb.png'
+            color: 0, 1, 1, 1
+        
+            on_release:
                 root.dismiss()
 <StarterMenu>:
     canvas:
@@ -116,10 +147,10 @@
         padding: 10
         spacing: 10
         FoodButton:
-            id:"1 : 1"
+            id:"f1"
             text: 'KABAB'
             background_normal: './starters/kabab.png'
-            on_press: root.callback()
+            
         FoodButton:
             id:"1 : 2"
             text: 'FRENCH FRIES'

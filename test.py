@@ -14,8 +14,6 @@ from kivy.garden.knob import  Knob
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.config import Config
 from kivy.properties import StringProperty
-Config.set('graphics', 'width', '400')
-Config.set('graphics', 'height', '500')
 # Import Adafruit IO REST client.
 from Adafruit_IO import Client, Feed
 
@@ -29,17 +27,13 @@ response = aio.feeds('menu')
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_file("main.kv")
-
 # Declare both screens
-
+class MyPopup(Popup):
+    #quantity =0
+    dish="FOOD"
+#pop=MyPopup()
 class StarterMenu(Screen):
-
-	#def __init__(self, **kwargs):
-    #super(Launch, self).__init__(**kwargs)
-
-    def callback(instance):
-    	aio.send_data('menu', "Kabab")
-    	print("sent")
+    pass
 class MainMenu(Screen):
 	pass
 
@@ -58,6 +52,18 @@ sm.add_widget(DesertMenu(name='desert'))
 # Create the screen manager
 
 class TestApp(App):
+
+    dish =''
+    
+    def call(self, instance):
+        self.dish = instance.text
+
+    def callback(self, instance):
+
+        #pop.quantity = pop.ids.ID1.value
+        #print(pop.quantity)
+        aio.send_data('menu', self.dish)
+        print("sent")
 
     def build(self):
         return sm
