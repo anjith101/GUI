@@ -29,9 +29,7 @@ response = aio.feeds('menu')
 Builder.load_file("main.kv")
 # Declare both screens
 class MyPopup(Popup):
-    #quantity =0
-    dish="FOOD"
-#pop=MyPopup()
+    dish=''
 class StarterMenu(Screen):
     pass
 class MainMenu(Screen):
@@ -53,16 +51,19 @@ sm.add_widget(DesertMenu(name='desert'))
 
 class TestApp(App):
 
-    dish =''
-    
+    dish ='Table1'
+    quantity = 0
     def call(self, instance):
-        self.dish = instance.text
+        self.dish ='Table1__'
+        self.dish = self.dish + instance.text
 
     def callback(self, instance):
 
+        self.quantity = "{}".format(int(instance.parent.name.value))
+        
         #pop.quantity = pop.ids.ID1.value
         #print(pop.quantity)
-        aio.send_data('menu', self.dish)
+        aio.send_data('menu', self.dish + "__" + str(self.quantity))
         print("sent")
 
     def build(self):

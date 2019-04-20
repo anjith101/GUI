@@ -5,7 +5,7 @@
     text_size: self.size     
     halign: 'center'
     valign: 'bottom'
-    color: 0, 0, 0, 1
+    color: 1, 0, 0, 1
     bold: True
     italic: True
     background_down: ''
@@ -15,14 +15,15 @@
         Factory.MyPopup().open()
 
 <MyPopup>:
-
+    
     auto_dismiss: False
     size_hint: 0.5,0.6
     title: 'QUANTITY'
     background: 'black.jpg'
     separator_color: 0.4, 0.4, 0.4, 1
     title_align: 'center'
-    FloatLayout:  
+    FloatLayout: 
+        name : na 
         size_hint: 1,1
         pos_hint: {"right":1, "top":1}
         rows: 1
@@ -30,19 +31,9 @@
         padding: 10
         spacing: 10
 
-        Label:
-            id:"l1"
-            text: root.dish
-            background_color: 1,0,1,1
-            pos_hint: {"right":1, "top":1}
-            size_hint: 1,0.1
-            font_size: 30
-            italic: True
-            color: 1, 1, 1, 1
-
 
         Knob:
-            id:'ID1'
+            id: na
             size_hint: 0.4,0.65
             pos_hint: {"right":0.4, "top":0.85}
             min: 0
@@ -132,7 +123,7 @@
             bold: True
             italic: True
             background_normal: 'button.png'
-            background_down: 'button.png'
+      id:'      background_down: 'button.png'
             color: 1, 1, 0, 1
             
             on_press:
