@@ -1,11 +1,12 @@
 #:import Factory kivy.factory.Factory
+
 <FoodButton@Button>:
     size_hint: 0.2,0.2
-    font_size: 10
+    font_size: 15
     text_size: self.size     
     halign: 'center'
     valign: 'bottom'
-    color: 1, 0, 0, 1
+    color: 0, 0, 0, 1
     bold: True
     italic: True
     background_down: ''
@@ -31,17 +32,6 @@
         padding: 10
         spacing: 10
 
-        Label:
-            id:"l1"
-            text: root.dish
-            background_color: 1,0,1,1
-            pos_hint: {"right":1, "top":1}
-            size_hint: 1,0.1
-            font_size: 30
-            italic: True
-            color: 1, 1, 1, 1
-
-
         Knob:
             id: na
             size_hint: 0.4,0.65
@@ -66,16 +56,15 @@
                 color: 0, 1, .5, 1
 
         Button:
-            id:'lb1'
             size_hint: 0.4,0.3
             pos_hint: {"right":1, "top":0.9}
-            font_size: 20
+            font_size: 30
             text: 'ORDER'
             bold: True
             italic: True
             background_normal: 'pb.png'
             background_down: 'pb.png'
-            color: 0, 1, 1, 1
+            color: 1, 1, 1, 1
             
             on_press:
                 app.callback(self)
@@ -85,22 +74,24 @@
         Button:
             size_hint: 0.4,0.3
             pos_hint: {"right":1, "top":0.4}
-            font_size: 20
+            font_size: 30
             text: 'CANCEL'
             bold: True
             italic: True
             background_normal: 'pb.png'
             background_down: 'pb.png'
-            color: 0, 1, 1, 1
+            color: 1, 1, 1, 1
         
             on_release:
                 root.dismiss()
+
 <StarterMenu>:
     canvas:
         Rectangle:
             source: 'images.jpeg'
             pos: self.pos
             size: self.size
+
     FloatLayout:
         Label:
             size_hint: 0.3,0.1
@@ -147,23 +138,20 @@
         cols: 4
         padding: 10
         spacing: 10
+
         FoodButton:
-            id:"f1"
             text: 'KABAB'
             background_normal: './starters/kabab.png'
             
         FoodButton:
-            id:"1 : 2"
             text: 'FRENCH FRIES'
             background_normal: './starters/frnchfry.png'
             
         FoodButton:
-            id:"1 : 3"
             text: 'SAMOSA'
             background_normal: './starters/samosa.png'
             
         FoodButton:
-            id:"1 : 4"
             text: 'CHICKEN WINGS'
             background_normal: './starters/chickenwings.png'
 
@@ -173,7 +161,6 @@
             background_normal: './starters/garlicbread.png'
 
         FoodButton:
-            id:"1 : 6"
             text: 'MOZARALLA STICKS'
             background_normal: './starters/mozaralla.png'
             id:"1 : 7"
@@ -182,27 +169,22 @@
             background_normal: './starters/panipuri.png'
 
         FoodButton:
-            id:"1 : 8"
             text: 'MASALA CHAT'
             background_normal: './starters/masala.png'
             
         FoodButton:
-            id:"1 : 9"
             text: 'SPRING ROLL'
             background_normal: './starters/springroll.png'
 
         FoodButton:
-            id:"1 : 10"
             text: 'HOT & SOUR SOUP'
             background_normal: './starters/hot.png'
             
         FoodButton:
-            id:"1 : 11"
             text: 'SWEET CORN SOUP'
             background_normal: './starters/sweetcorn.png'
             
         FoodButton:
-            id:"1 : 12"
             text: 'TOMATTO SOUP'
             background_normal: './starters/tomatto.png'
         
@@ -212,6 +194,7 @@
             source: 'images.jpeg'
             pos: self.pos
             size: self.size
+
     FloatLayout:
         Label:
             size_hint: 0.3,0.1
@@ -323,7 +306,7 @@
         Label:
             size_hint: 0.3,0.1
             pos_hint:{"right":0.65, "top":1}
-            text: 'DESERTS'
+            text: 'DRINKS'
             bold: True
             italic: True
             color: 0, 0, 0, 1
@@ -356,115 +339,6 @@
             on_press:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'main'
-
-    GridLayout:  
-        size_hint: 1,0.6
-        pos_hint: {"right":1, "top":0.8}
-        rows: 3
-        cols: 4
-        padding: 10
-        spacing: 10
-        FoodButton:
-
-            text: 'FRUITE TART'
-            background_normal: './deserts/Fruittart.png'
-
-        FoodButton:
-            
-            text: 'CHOKO WALLNUT BROWNIE'
-            background_normal: './deserts/chokwallbrow.png'
-            
-        FoodButton:
-        
-            text: 'TIRAMISU'
-            background_normal: './deserts/tiramisu.png'
-            
-        FoodButton:
-            
-            text: 'STRAWBERRY CAKE'
-            background_normal: './deserts/strawberry.png'
-        FoodButton:
-            
-            text: 'ORANGE CHEES CAKE'
-            background_normal: './deserts/orange cheese.png'
-
-        FoodButton:
-            
-            text: 'CHOKO LAIR CAKE'
-            background_normal: './deserts/chocklair.png'
-
-        FoodButton:
-            text: 'GULAB JAMUN'
-            background_normal: './deserts/gulab.png'
-
-        FoodButton:
-        
-            text: 'JALEBI'
-            background_normal: './deserts/jalebi.png'
-            
-        FoodButton:
-            
-            text: 'LADDO'
-            background_normal: './deserts/laddo.png'
-
-        FoodButton:
-           
-            text: 'STRAWBERRY ICECREAM'
-            background_normal: './deserts/strawberryice.png'
-            
-        FoodButton:
-            
-            text: 'CARRMEL SWERL ICECREAM'
-            background_normal: './deserts/carrmelswerl.png'
-            
-        FoodButton:
-        
-            text: 'BANANNA SPLIT'
-            background_normal: './deserts/bananasplit.png'
-
-<DesertMenu>:
-    canvas:
-        Rectangle:
-            source: 'images.jpeg'
-            pos: self.pos
-            size: self.size
-    FloatLayout:
-        Label:
-            size_hint: 0.3,0.1
-            pos_hint:{"right":0.65, "top":1}
-            text: 'DRINKS'
-            bold: True
-            italic: True
-            color: 0, 0, 0, 1
-            font_size: 25
-        Button:
-            size_hint: 0.3,0.1
-            pos_hint: {"right":1, "top":1}
-            font_size: 15
-            text: 'NEXT'
-            bold: True
-            italic: True
-            background_normal: 'button.png'
-            background_down: 'button.png'
-            color: 1, 1, 0, 1
-            
-            on_press:
-                root.manager.transition.direction = 'left'
-                root.manager.current = 'starter'
-        Button:
-            size_hint: 0.3,0.1
-            pos_hint: {"right":0.3, "top":1}
-            font_size: 15
-            text: 'PREVIOUS'
-            bold: True
-            italic: True
-            background_normal: 'button.png'
-            background_down: 'button.png'
-            color: 1, 1, 0, 1
-            
-            on_press:
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'drinks'
 
     GridLayout:  
         size_hint: 1,0.6
@@ -531,3 +405,113 @@
         
             text: 'APPLE MOKTALE'
             background_normal: './drinks/applemok.png'
+
+
+<DesertMenu>:
+    canvas:
+        Rectangle:
+            source: 'images.jpeg'
+            pos: self.pos
+            size: self.size
+    FloatLayout:
+        Label:
+            size_hint: 0.3,0.1
+            pos_hint:{"right":0.65, "top":1}
+            text: 'DESERTS'
+            bold: True
+            italic: True
+            color: 0, 0, 0, 1
+            font_size: 25
+        Button:
+            size_hint: 0.3,0.1
+            pos_hint: {"right":1, "top":1}
+            font_size: 15
+            text: 'NEXT'
+            bold: True
+            italic: True
+            background_normal: 'button.png'
+            background_down: 'button.png'
+            color: 1, 1, 0, 1
+            
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'starter'
+        Button:
+            size_hint: 0.3,0.1
+            pos_hint: {"right":0.3, "top":1}
+            font_size: 15
+            text: 'PREVIOUS'
+            bold: True
+            italic: True
+            background_normal: 'button.png'
+            background_down: 'button.png'
+            color: 1, 1, 0, 1
+            
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'drinks'
+
+    GridLayout:  
+        size_hint: 1,0.6
+        pos_hint: {"right":1, "top":0.8}
+        rows: 3
+        cols: 4
+        padding: 10
+        spacing: 10
+        FoodButton:
+
+            text: 'FRUITE TART rs:25'
+            background_normal: './deserts/Fruittart.png'
+
+        FoodButton:
+            
+            text: 'CHOKO WALLNUT BROWNIE'
+            background_normal: './deserts/chokwallbrow.png'
+            
+        FoodButton:
+        
+            text: 'TIRAMISU'
+            background_normal: './deserts/tiramisu.png'
+            
+        FoodButton:
+            
+            text: 'STRAWBERRY CAKE'
+            background_normal: './deserts/strawberry.png'
+        FoodButton:
+            
+            text: 'ORANGE CHEES CAKE'
+            background_normal: './deserts/orange cheese.png'
+
+        FoodButton:
+            
+            text: 'CHOKO LAIR CAKE'
+            background_normal: './deserts/chocklair.png'
+
+        FoodButton:
+            text: 'GULAB JAMUN'
+            background_normal: './deserts/gulab.png'
+
+        FoodButton:
+        
+            text: 'JALEBI'
+            background_normal: './deserts/jalebi.png'
+            
+        FoodButton:
+            
+            text: 'LADDO'
+            background_normal: './deserts/laddo.png'
+
+        FoodButton:
+           
+            text: 'STRAWBERRY ICECREAM'
+            background_normal: './deserts/strawberryice.png'
+            
+        FoodButton:
+            
+            text: 'CARRMEL SWERL ICECREAM'
+            background_normal: './deserts/carrmelswerl.png'
+            
+        FoodButton:
+        
+            text: 'BANANNA SPLIT'
+            background_normal: './deserts/bananasplit.png'

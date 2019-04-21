@@ -29,9 +29,11 @@ response = aio.feeds('menu')
 Builder.load_file("main.kv")
 # Declare both screens
 class MyPopup(Popup):
-    dish=''
+    dish = ''
+
 class StarterMenu(Screen):
     pass
+
 class MainMenu(Screen):
 	pass
 
@@ -54,20 +56,19 @@ class TestApp(App):
     dish ='Table1'
     quantity = 0
     def call(self, instance):
+        
         self.dish ='Table1__'
         self.dish = self.dish + instance.text
 
     def callback(self, instance):
 
         self.quantity = "{}".format(int(instance.parent.name.value))
-        
-        #pop.quantity = pop.ids.ID1.value
-        #print(pop.quantity)
         aio.send_data('menu', self.dish + "__" + str(self.quantity))
-        print("sent")
 
     def build(self):
+
         return sm
+
 if __name__ =="__main__":
     Window.fullscreen = 'auto'
     TestApp().run()
