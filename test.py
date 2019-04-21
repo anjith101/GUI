@@ -1,3 +1,5 @@
+import os
+os.environ['KIVY_GL_BACKEND'] = 'gl'
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
@@ -56,7 +58,7 @@ class TestApp(App):
     dish ='Table1'
     quantity = 0
     def call(self, instance):
-        
+
         self.dish ='Table1__'
         self.dish = self.dish + instance.text
 
