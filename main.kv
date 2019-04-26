@@ -1,60 +1,66 @@
 #:import Factory kivy.factory.Factory
 
+
+# costom button
 <FoodButton@Button>:
-    size_hint: 0.2,0.2
-    font_size: 15
+    size_hint: 0.2,0.2  #size compared to parent
+    font_size: 15       #label font size
     text_size: self.size     
-    halign: 'center'
+    halign: 'center'    #button label placing
     valign: 'bottom'
-    color: 0, 0, 0, 1
-    bold: True
+    color: 0, 0, 0, 1   #font color R,G,B,opacity
+    bold: True #font parameters
     italic: True
-    background_down: ''
-    on_press:
-        app.call(self)
+    background_down: '' #button background when pressed
+
+    #on press call methord in app class
+    on_press:   
+        app.call(self) 
+
+    #on release clsoe popup
     on_release:
         Factory.MyPopup().open()
 
+#popup parent
 <MyPopup>:
     
-    auto_dismiss: False
-    size_hint: 0.5,0.6
+    auto_dismiss: False #auto closing disabled 
+    size_hint: 0.5,0.6  #size of the popup
     title: 'QUANTITY'
-    background: 'black.jpg'
+    background: 'black.jpg' #background picture of popup
     separator_color: 0.4, 0.4, 0.4, 1
     title_align: 'center'
+
+    #float layout (can place widgets anyware)
     FloatLayout: 
-        name : na 
-        size_hint: 1,1
+        name : na #name=na(id of knob)
+        size_hint: 1,1  
         pos_hint: {"right":1, "top":1}
-        rows: 1
-        cols: 1
-        padding: 10
-        spacing: 10
+        
 
         Knob:
-            id: na
+            id: na #knob id
             size_hint: 0.4,0.65
             pos_hint: {"right":0.4, "top":0.85}
-            min: 0
-            max: 15
-            step: 10
+            min: 0 #min value of knob
+            max: 15 #max value of knob
             value: 0  # Default position of knob.
             knobimg_source: "knob.png"  # Knob texture
             show_label: True  # Show central label
             show_marker: True  # Show surrounding marker
             marker_img: "bline.png" # Marker texture image
             knob_size: 0.9  # Scales knob size to leave space for marker
-            markeroff_color: 0, 0, 0, 0
+            markeroff_color: 0, 0, 0, 0 #color of marker when off
             Label:
                 
-                text: "{}".format(int(self.parent.value))
-                center: self.parent.center
+                text: "{}".format(int(self.parent.value)) #label of knob text=value of knob
+                center: self.parent.center #label placing
                 font_size: 40
                 bold: True
                 italic: True
                 color: 0, 1, .5, 1
 
+        #order button
         Button:
             size_hint: 0.4,0.3
             pos_hint: {"right":1, "top":0.9}
@@ -66,11 +72,15 @@
             background_down: 'pb.png'
             color: 1, 1, 1, 1
             
+            #on press callback methord from appclass
             on_press:
                 app.callback(self)
+
+            #on release dosmis popup
             on_release:
                 root.dismiss()
 
+        #cncel button
         Button:
             size_hint: 0.4,0.3
             pos_hint: {"right":1, "top":0.4}
@@ -81,18 +91,24 @@
             background_normal: 'pb.png'
             background_down: 'pb.png'
             color: 1, 1, 1, 1
-        
+            
+            #on release dismis popup
             on_release:
                 root.dismiss()
 
+#starter screen
 <StarterMenu>:
+#setting background
     canvas:
         Rectangle:
             source: 'images.jpeg'
             pos: self.pos
             size: self.size
 
+#float layout in the sizee of parent
     FloatLayout:
+
+        #label on top 'starter'
         Label:
             size_hint: 0.3,0.1
             pos_hint:{"right":0.65, "top":1}
@@ -105,7 +121,7 @@
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":1, "top":1}
-            font_size: 15
+            font_size: 30
             text: 'NEXT'
             bold: True
             italic: True
@@ -119,7 +135,7 @@
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":0.3, "top":1}
-            font_size: 15
+            font_size: 30
             text: 'PREVIOUS'
             bold: True
             italic: True
@@ -131,61 +147,64 @@
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'desert'
 
+    #grid layout on float layout parent for placing food button
     GridLayout:  
         size_hint: 1,0.6
         pos_hint: {"right":1, "top":0.8}
-        rows: 3
+        rows: 3 
         cols: 4
+        #space between buttons
         padding: 10
         spacing: 10
 
+        #food button widget we created with text content and backround when not pressed
         FoodButton:
-            text: 'KABAB'
+            text: 'KABAB ₹199'
             background_normal: './starters/kabab.png'
             
         FoodButton:
-            text: 'FRENCH FRIES'
+            text: 'FRENCH FRIES ₹89'
             background_normal: './starters/frnchfry.png'
             
         FoodButton:
-            text: 'SAMOSA'
+            text: 'SAMOSA ₹149'
             background_normal: './starters/samosa.png'
             
         FoodButton:
-            text: 'CHICKEN WINGS'
+            text: 'CHICKEN WINGS ₹349'
             background_normal: './starters/chickenwings.png'
 
         FoodButton:
             id:"1 : 5"
-            text: 'GARLIC BREAD'
+            text: 'GARLIC BREAD ₹99'
             background_normal: './starters/garlicbread.png'
 
         FoodButton:
-            text: 'MOZARALLA STICKS'
+            text: 'MOZARALLA STICKS ₹119'
             background_normal: './starters/mozaralla.png'
             id:"1 : 7"
         FoodButton:
-            text: 'PANI PURI'
+            text: 'PANI PURI ₹99'
             background_normal: './starters/panipuri.png'
 
         FoodButton:
-            text: 'MASALA CHAT'
+            text: 'MASALA CHAT ₹99'
             background_normal: './starters/masala.png'
             
         FoodButton:
-            text: 'SPRING ROLL'
+            text: 'SPRING ROLL ₹149'
             background_normal: './starters/springroll.png'
 
         FoodButton:
-            text: 'HOT & SOUR SOUP'
+            text: 'HOT & SOUR SOUP ₹120'
             background_normal: './starters/hot.png'
             
         FoodButton:
-            text: 'SWEET CORN SOUP'
+            text: 'SWEET CORN SOUP ₹120'
             background_normal: './starters/sweetcorn.png'
             
         FoodButton:
-            text: 'TOMATTO SOUP'
+            text: 'TOMATO SOUP ₹99'
             background_normal: './starters/tomatto.png'
         
 <MainMenu>:
@@ -207,7 +226,7 @@
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":1, "top":1}
-            font_size: 15
+            font_size: 30
             text: 'NEXT'
             bold: True
             italic: True
@@ -221,7 +240,7 @@
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":0.3, "top":1}
-            font_size: 15
+            font_size: 30
             text: 'PREVIOUS'
             bold: True
             italic: True
@@ -242,58 +261,58 @@
         spacing: 10
         FoodButton:
 
-            text: 'BBQ RIBS'
+            text: 'BBQ RIBS ₹699'
             background_normal: './main_cource/bbqribs.png'
 
         FoodButton:
             
-            text: 'SPAGGATTI'
+            text: 'SPAGGATTI ₹449'
             background_normal: './main_cource/spagatti.png'
         FoodButton:
         
-            text: 'SEARD SCALLOP'
+            text: 'SEARD SCALLOP ₹449'
             background_normal: './main_cource/seardscallop.png'
         FoodButton:
             
-            text: 'SEAFOOD PALTTER'
+            text: 'SEAFOOD PALTTER ₹999'
             background_normal: './main_cource/seafood.png'
 
         FoodButton:
             
-            text: 'PIZZA'
+            text: 'PIZZA ₹350'
             background_normal: './main_cource/piza.png'
         FoodButton:
             
-            text: 'PENNE PASTHA'
+            text: 'PENNE PASTHA ₹199'
             background_normal: './main_cource/penne.png'
 
         FoodButton:
-            text: 'LOBSTER'
+            text: 'LOBSTER ₹849'
             background_normal: './main_cource/lobster.png'
 
         FoodButton:
         
-            text: 'LASAGNA'
+            text: 'LASAGNA ₹349'
             background_normal: './main_cource/lasagna.png'
             
         FoodButton:
             
-            text: 'BURGER'
+            text: 'BURGER ₹299'
             background_normal: './main_cource/burger.png'
 
         FoodButton:
            
-            text: 'BURRITO'
+            text: 'BURRITO ₹249'
             background_normal: './main_cource/burrito.png'
             
         FoodButton:
             
-            text: 'NORTH INDIAN THALI'
+            text: 'NORTH INDIAN THALI ₹399'
             background_normal: './main_cource/nonthali.png'
             
         FoodButton:
         
-            text: 'BIRIYANI'
+            text: 'BIRIYANI ₹249'
             background_normal: './main_cource/biriyani.png'
 
 <DrinksMenu>:
@@ -314,7 +333,7 @@
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":1, "top":1}
-            font_size: 15
+            font_size: 30
             text: 'NEXT'
             bold: True
             italic: True
@@ -328,7 +347,7 @@
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":0.3, "top":1}
-            font_size: 15
+            font_size: 30
             text: 'PREVIOUS'
             bold: True
             italic: True
@@ -349,61 +368,61 @@
         spacing: 10
         FoodButton:
 
-            text: 'BUTTER SCOTCH SHAKE'
+            text: 'BUTTER SCOTCH SHAKE ₹189'
             background_normal: './drinks/butter.png'
 
         FoodButton:
             
-            text: 'VANILA SHAKE'
+            text: 'VANILA SHAKE ₹149'
             background_normal: './drinks/vanilla.png'
             
         FoodButton:
         
-            text: 'STRAWBERRY SHAKE'
+            text: 'STRAWBERRY SHAKE ₹149'
             background_normal: './drinks/strawaberry.png'
             
         FoodButton:
             
-            text: 'COFFEE SHAKE'
+            text: 'COFFEE SHAKE ₹159'
             background_normal: './drinks/coffie.png'
 
         FoodButton:
             
-            text: 'CAPPUCCINO'
+            text: 'CAPPUCCINO ₹129'
             background_normal: './drinks/Cappuccino.png'
         FoodButton:
             
-            text: 'COFFEE'
+            text: 'COFFEE ₹89'
             background_normal: './drinks/coffeee.png'
 
         FoodButton:
 
-            text: 'TEA'
+            text: 'TEA ₹69'
             background_normal: './drinks/tea.png'
 
         FoodButton:
         
-            text: 'COLA'
+            text: 'COLA ₹120'
             background_normal: './drinks/cola.png'
             
         FoodButton:
             
-            text: 'SPRITE'
+            text: 'SPRITE ₹120'
             background_normal: './drinks/sprite.png'
 
         FoodButton:
            
-            text: 'PINAPPLAE MOKTALE'
+            text: 'PINAPPLAE MOKTALE ₹189'
             background_normal: './drinks/pineappele.png'
             
         FoodButton:
             
-            text: 'ORANGE MOKTALE'
+            text: 'ORANGE MOKTALE ₹189'
             background_normal: './drinks/orangecennemo.png'
             
         FoodButton:
         
-            text: 'APPLE MOKTALE'
+            text: 'APPLE MOKTALE ₹189'
             background_normal: './drinks/applemok.png'
 
 
@@ -425,7 +444,7 @@
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":1, "top":1}
-            font_size: 15
+            font_size: 30
             text: 'NEXT'
             bold: True
             italic: True
@@ -439,7 +458,7 @@
         Button:
             size_hint: 0.3,0.1
             pos_hint: {"right":0.3, "top":1}
-            font_size: 15
+            font_size: 30
             text: 'PREVIOUS'
             bold: True
             italic: True
@@ -460,58 +479,58 @@
         spacing: 10
         FoodButton:
 
-            text: 'FRUITE TART rs:25'
+            text: 'FRUITE TART ₹699'
             background_normal: './deserts/Fruittart.png'
 
         FoodButton:
             
-            text: 'CHOKO WALLNUT BROWNIE'
+            text: 'CHOKO WALLNUT BROWNIE ₹149'
             background_normal: './deserts/chokwallbrow.png'
             
         FoodButton:
         
-            text: 'TIRAMISU'
+            text: 'TIRAMISU ₹119'
             background_normal: './deserts/tiramisu.png'
             
         FoodButton:
             
-            text: 'STRAWBERRY CAKE'
+            text: 'STRAWBERRY CAKE ₹119'
             background_normal: './deserts/strawberry.png'
         FoodButton:
             
-            text: 'ORANGE CHEES CAKE'
+            text: 'ORANGE CHEES CAKE ₹149'
             background_normal: './deserts/orange cheese.png'
 
         FoodButton:
             
-            text: 'CHOKO LAIR CAKE'
+            text: 'CHOKO LAIR CAKE ₹149'
             background_normal: './deserts/chocklair.png'
 
         FoodButton:
-            text: 'GULAB JAMUN'
+            text: 'GULAB JAMUN ₹79'
             background_normal: './deserts/gulab.png'
 
         FoodButton:
         
-            text: 'JALEBI'
+            text: 'JALEBI ₹79'
             background_normal: './deserts/jalebi.png'
             
         FoodButton:
             
-            text: 'LADDO'
+            text: 'LADDO ₹89'
             background_normal: './deserts/laddo.png'
 
         FoodButton:
            
-            text: 'STRAWBERRY ICECREAM'
+            text: 'STRAWBERRY ICECREAM ₹169'
             background_normal: './deserts/strawberryice.png'
             
         FoodButton:
             
-            text: 'CARRMEL SWERL ICECREAM'
+            text: 'CARRMEL SWERL ICECREAM ₹189'
             background_normal: './deserts/carrmelswerl.png'
             
         FoodButton:
         
-            text: 'BANANNA SPLIT'
+            text: 'BANANNA SPLIT ₹189'
             background_normal: './deserts/bananasplit.png'
