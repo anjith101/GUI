@@ -1,5 +1,8 @@
 
 #hedder files
+import os
+os.environ['KIVY_WINDOW'] = 'sdl2'
+#os.environ['KIVY_GL_BACKEND'] = 'gl'
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
@@ -11,7 +14,7 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.config import Config
 from kivy.uix.image import Image
-from kivy.base  import  runTouchApp
+#from kivy.base  import  runTouchApp
 from kivy.garden.knob import  Knob
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.config import Config
@@ -28,8 +31,10 @@ response = aio.feeds('menu') #feed name menu
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
+
 Builder.load_file("main.kv") #load file 'main.kv' to create app
 # Declare both screens
+
 
 #each class reprecent each screen inside the brackets are inheritance of class pass meanse do nothing 
 class MyPopup(Popup):
