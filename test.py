@@ -1,8 +1,9 @@
+#on raspberry pi kivy uses egl_rpi as window module by default but it crashes due to graphics problem
 
-#hedder files
 import os
 os.environ['KIVY_WINDOW'] = 'sdl2'
-#os.environ['KIVY_GL_BACKEND'] = 'gl'
+
+#hedder files
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
